@@ -43,8 +43,8 @@ App = {
     },
 
     loadAccount: async () => {
-        App.account = web3.eth.accounts[0]
-        console.log(App.account)
+        web3.eth.defaultAccount = web3.eth.accounts[0]
+        // console.log(App.account)
     },
 
     loadContract: async () => {
@@ -128,7 +128,15 @@ App = {
             content.show()
         }
 
+    },
+
+    createTask: async () => {
+        App.setLoading(true)
+        const content = $('#newTask').val()
+        await App.todoList.createTask(content)
+        window.location.reload()
     }
+    
 
 }
 
